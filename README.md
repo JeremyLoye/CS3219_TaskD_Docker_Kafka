@@ -57,10 +57,10 @@ Create a 3 node Apache Kafka cluster using Docker that demonstrates the Pub-Sub 
 
    where `{topicname}` is the name of the topic previously created and `{ipaddress}` is the IP address of any of the 3 servers running. 
 
-3. On the publisher terminal, you can type messages and you will see it appear on the consumer terminal. ![image-20201003193225831](C:\Users\jerem\AppData\Roaming\Typora\typora-user-images\image-20201003193225831.png)
+3. On the publisher terminal, you can type messages and you will see it appear on the consumer terminal. ![PubSub%20Messages](./images/PubSub%20Messages.png)
 
 #### Failure management of master node in the cluster
 
-1. Running the command `kafka cat -L -b {ipaddress}:9092` will allow you to see the metadata for all topics, including its brokers and the 'leader' node of the topic.![image-20201003193323941](C:\Users\jerem\AppData\Roaming\Typora\typora-user-images\image-20201003193323941.png)
+1. Running the command `kafka cat -L -b {ipaddress}:9092` will allow you to see the metadata for all topics, including its brokers and the 'leader' node of the topic.![Metadata%20with%203%20nodes](./images/Metadata%20with%203%20nodes.png)
 2. To test for the successful handling of master node failure, take node of the leader node for the topic and run `docker stop {containername}` where `{containername}` is the name of the container running the node.
-3. Running the command  `kafka cat -L -b {ipaddress}:9092` again will show that one of the other 2 nodes has taken over as the leader node and you can continue to publish and consume messages in the kafka topic. [Take note: Only the IP address of either of the 2 remaining running Kafka instances can be used for commands] ![image-20201003193350001](C:\Users\jerem\AppData\Roaming\Typora\typora-user-images\image-20201003193350001.png)
+3. Running the command  `kafka cat -L -b {ipaddress}:9092` again will show that one of the other 2 nodes has taken over as the leader node and you can continue to publish and consume messages in the kafka topic. [Take note: Only the IP address of either of the 2 remaining running Kafka instances can be used for commands] ![Metadata%20with%202%20nodes](./images/Metadata%20with%202%20nodes.png)
